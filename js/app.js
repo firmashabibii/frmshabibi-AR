@@ -46,6 +46,7 @@ btnOpenAR.addEventListener('click', async () => {
   originalBodyStyles.height = document.body.style.height;
 
   // Open modal
+  document.body.classList.add('ar-active');
   arModal.classList.add('open');
   arLoader.style.opacity = '1';
   arLoader.style.display = 'flex';
@@ -347,6 +348,9 @@ function buildARScene() {
 function closeAR() {
   if (!isARActive) return;
   isARActive = false;
+
+  // Remove active class
+  document.body.classList.remove('ar-active');
 
   // 1. Hide modal
   arModal.classList.remove('open');
