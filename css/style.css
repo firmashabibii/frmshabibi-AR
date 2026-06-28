@@ -379,6 +379,7 @@ html.ar-active, body.ar-active {
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
+  display: block !important;
 }
 
 .ar-modal.open {
