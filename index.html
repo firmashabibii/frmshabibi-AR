@@ -1,63 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
-    <meta charset="utf-8">
-    <title>WebAR Portofolio - Firmas Habibi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Firmas Habibi - Kartu Nama Interaktif WebAR</title>
 
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="script.js"></script>
+  <!-- Meta SEO -->
+  <meta name="description"
+    content="Profil digital interaktif dan kartu nama berbasis Augmented Reality (WebAR) untuk Firmas Habibi, Fullstack Software Engineer. Scan marker Hiro untuk melihat visual 3D.">
+  <meta name="author" content="Firmas Habibi">
+  <meta name="keywords"
+    content="Firmas Habibi, WebAR, Augmented Reality, A-Frame, AR.js, Fullstack Engineer, Portfolio, Kartu Nama Interaktif">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Firmas Habibi - Kartu Nama Interaktif WebAR">
+  <meta property="og:description"
+    content="Scan marker Hiro untuk memunculkan avatar 3D interaktif dan profil digital Firmas Habibi langsung di browsermu.">
+  <meta property="og:image" content="assets/profile.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Link Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="margin: 0px; overflow: hidden;">
+<body>
 
-    <!-- Setup AR Scene (Hapus rayOrigin: mouse karena kita pakai kursor visual) -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+  <!-- Main Website Interface -->
+  <main class="container" id="main-content">
 
-        <a-assets>
-            <img id="biodataImg" src="biodata.png">
-        </a-assets>
+    <!-- Profile Card (Digital Business Card) -->
+    <article class="profile-card">
+      <div class="card-title">// BIODATA</div>
+      <div class="card-header-id">ID_FRM205</div>
 
-        <!-- Deteksi Marker Hiro -->
-        <a-marker preset="hiro">
+      <!-- Left: Photo -->
+      <section class="profile-img-container">
+        <img src="assets/profile.jpg" alt="Firmas Habibi" class="profile-img" id="profile-img">
+      </section>
 
-            <!-- Gambar Biodata dengan Animasi Membesar (Zoom) -->
-            <!-- Saat kursor masuk (mouseenter), scale membesar jadi 1.15 -->
-            <!-- Saat kursor keluar (mouseleave), scale kembali ke 1 -->
-            <a-image src="#biodataImg" position="0 0 0" rotation="-90 0 0" width="2.4" height="1.5" class="interaktif"
-                animation__zoom="property: scale; to: 1.15 1.15 1.15; startEvents: mouseenter; dur: 300; easing: easeOutQuad"
-                animation__unzoom="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 300; easing: easeOutQuad">
+      <!-- Right: Personal Info -->
+      <section class="profile-info">
 
-                <!-- Tombol 1: Portofolio -->
-                <a-plane position="-0.6 -0.5 0.01" width="0.5" height="0.15" material="opacity: 0.0; transparent: true"
-                    class="interaktif" url-handler="url: https://www.frmshbi.dev/projects">
-                    <!-- (Teks dihapus agar murni transparan mengikuti desain gambarmu) -->
-                </a-plane>
+        <div class="info-item">
+          <span class="info-label">FULL NAME</span>
+          <span class="info-value" id="val-name">Firmas Habibi</span>
+        </div>
 
-                <!-- Tombol 2: GitHub -->
-                <a-plane position="0 -0.5 0.01" width="0.5" height="0.15" material="opacity: 0.0; transparent: true"
-                    class="interaktif" url-handler="url: https://github.com/firmashabibii">
-                </a-plane>
+        <div class="info-item">
+          <span class="info-label">ROLE</span>
+          <span class="info-value" id="val-role">Fullstack Engineer</span>
+        </div>
 
-                <!-- Tombol 3: Instagram -->
-                <a-plane position="0.6 -0.5 0.01" width="0.5" height="0.15" material="opacity: 0.0; transparent: true"
-                    class="interaktif" url-handler="url: https://www.instagram.com/frmshbi/?hl=en">
-                </a-plane>
+        <div class="info-item">
+          <span class="info-label">CORE STACK</span>
+          <div class="skills-list" id="val-skills">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">WebAR</span>
+          </div>
+        </div>
 
-            </a-image>
-        </a-marker>
+        <div class="info-item">
+          <span class="info-label">LOCATION</span>
+          <span class="info-value" id="val-location">Indonesia • Sumatera Utara</span>
+        </div>
 
-        <!-- Kamera dengan Kursor Fuse (Target bidik di tengah layar) -->
-        <a-entity camera>
-            <!-- fuseTimeout="1500" artinya butuh 1.5 detik ditahan untuk membuka link -->
-            <a-cursor fuse="true" fuseTimeout="2500" raycaster="objects: .interaktif" color="#ffffff"
-                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.2 0.2 0.2"
-                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 300; to: 1 1 1">
-            </a-cursor>
-        </a-entity>
+        <div class="info-item">
+          <span class="info-label">FOCUS</span>
+          <span class="info-value" id="val-focus" style="font-size: 13px; letter-spacing: 0px;">High-Performance Systems
+            & Interactive Apps</span>
+        </div>
 
-    </a-scene>
+      </section>
+    </article>
+
+    <!-- Social Media / Links -->
+    <nav class="quick-links">
+      <a href="https://www.frmshbi.dev/projects" target="_blank" rel="noopener noreferrer"
+        class="link-btn link-btn-portfolio" id="link-portfolio">
+        <span>Portfolio</span>
+      </a>
+      <a href="https://github.com/firmashabibii" target="_blank" rel="noopener noreferrer"
+        class="link-btn link-btn-github" id="link-github">
+        <span>GitHub</span>
+      </a>
+      <a href="https://www.instagram.com/frmshbi/?hl=en" target="_blank" rel="noopener noreferrer"
+        class="link-btn link-btn-instagram" id="link-instagram">
+        <span>Instagram</span>
+      </a>
+    </nav>
+
+    <!-- Action Button to Open AR Camera -->
+    <div class="scan-trigger-container">
+      <button class="btn-scan-ar" id="btn-open-ar" aria-haspopup="dialog" aria-controls="ar-modal">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M4 4h6V2H4c-1.1 0-2 .9-2 2v6h2V4zm16-2h-6v2h6v6h2V4c0-1.1-.9-2-2-2zM4 20h6v2H4c-1.1 0-2-.9-2-2v-6h2v6zm16 2h-6v-2h6v-6h2v6c0 1.1-.9 2-2 2zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+        </svg>
+        <span>Pindai Kartu AR</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- WebAR Scanner Modal (Bottom Sheet Slider) -->
+  <dialog class="ar-modal" id="ar-modal">
+
+    <!-- AR.js Viewport (Webcam will inject here) -->
+    <div class="ar-viewport" id="ar-viewport">
+
+      <!-- Script Loading Screen -->
+      <div class="ar-loader" id="ar-loader">
+        <div class="spinner"></div>
+        <p>Menginisialisasi Kamera & AR...</p>
+      </div>
+
+      <!-- Heads-Up Display (HUD) overlay -->
+      <div class="ar-hud">
+
+        <!-- Top bar of HUD -->
+        <div class="ar-hud-top">
+          <div class="ar-status">
+            <span class="ar-status-dot" id="status-dot"></span>
+            <span id="status-text">Mencari Marker...</span>
+          </div>
+          <button class="btn-close-ar ar-hud-interactive" id="btn-close-ar" aria-label="Tutup kamera AR">✕</button>
+        </div>
+
+        <!-- Scanning Frame Finder & Laser beam -->
+        <div class="ar-scanner-frame">
+          <div class="ar-scanner-frame-inner"></div>
+          <div class="ar-laser-beam"></div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="ar-instructions">
+          <h3>Panduan Pemindaian</h3>
+          <p>Arahkan kamera ke Marker Hiro. Gambar digital 3D & profil akan muncul mengambang di atasnya.</p>
+        </div>
+
+        <!-- Floating Marker Help Popup -->
+        <div class="marker-help-trigger ar-hud-interactive">
+          <button class="btn-help" id="btn-help" aria-label="Tampilkan marker untuk pemindaian">?</button>
+
+          <div class="marker-help-popup" id="marker-popup">
+            <p>Tampilkan kartu di bawah ini pada perangkat lain untuk dipindai:</p>
+            <div class="marker-thumbnail" style="width: 180px; height: 110px; background: none; border: none;">
+              <img src="assets/card-marker.png" alt="Card Marker" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <p><strong>Kartu Nama Marker</strong></p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+  <!-- Link JavaScript -->
+  <script src="js/app.js"></script>
 </body>
 
 </html>
